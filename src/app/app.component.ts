@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-assigment6-forms-td';
+  defaultSubscription:string = 'advanced'
+  @ViewChild('form') formData: NgForm;
+  data = {
+    email:'', password:'', subscriptionType:''
+  }
+
+  submitted:boolean = false;
+
+  onSubmit(){
+    this.data.email = this.formData.value.email;
+    this.data.password = this.formData.value.password;
+    this.data.subscriptionType = this.formData.value.subscriptionType;
+    console.log(this.data);
+    
+    this.submitted =true;
+
+    this.formData.reset();
+    
+  }
+
 }
